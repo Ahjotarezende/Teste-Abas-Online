@@ -13,11 +13,27 @@ import {
 import LogoAbas from "../../Assets/marca-abas-positiva.svg";
 import InputComp from "../../Components/InputComp/InputComp";
 import Button from "../../Components/Button/Button";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  /*eslint-disable */
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [type, setType] = useState("password");
+  const [textButton, setTextButton] = useState("Entrar !")
+  
+  const onSubmit = data => {
+    setTextButton("Carregando...")
+    setTimeout(() => {
+      alert(
+        `Logado com sucesso usando o email: ${data.getEmail}`
+      );
+      console.log(data)
+      document.location.reload();
+    }, 3000);
+  }
 
   const viewPassword = () => {
     type === "password" ? setType("text") : setType("password");
@@ -25,7 +41,7 @@ const Login = () => {
 
   return (
     <Container>
-      <AreaLogin>
+      <AreaLogin onSubmit={handleSubmit(onSubmit)}>
         <Apresentation>
           <Logo src={LogoAbas} alt="Logo Abas Online" />
           <Welcome>Bem-vindo à Abas Online</Welcome>
@@ -37,6 +53,7 @@ const Login = () => {
           id="getEmail"
           type="email"
           setValor={setEmail}
+          register={register}
         />
         <DivPwd>
           <InputComp
@@ -45,6 +62,7 @@ const Login = () => {
             id="getSenha"
             type={type}
             setValor={setPwd}
+            register={register}
           />
           {type === "password" ? (
             <FaEyeUI
@@ -60,7 +78,7 @@ const Login = () => {
             />
           )}
         </DivPwd>
-        <Button/>
+        <Button text={textButton}/>
       </AreaLogin>
     </Container>
   );
