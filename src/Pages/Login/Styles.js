@@ -17,6 +17,7 @@ export const AreaLogin = styled.form`
     border-radius: 10px;
     width: 24rem;
     height: 28rem;
+    gap: 2rem;
 `;
 
 export const Logo = styled.img`
