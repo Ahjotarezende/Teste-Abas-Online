@@ -11,7 +11,8 @@ import {
   FaEyeSlashUI,
 } from "./Styles";
 import LogoAbas from "../../Assets/marca-abas-positiva.svg";
-import InputComp from "../../InputComp/InputComp";
+import InputComp from "../../Components/InputComp/InputComp";
+import Button from "../../Components/Button/Button";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -59,6 +60,7 @@ const Login = () => {
             />
           )}
         </DivPwd>
+        <Button/>
       </AreaLogin>
     </Container>
   );
