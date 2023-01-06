@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 0.2rem;
   justify-content: flex-end;
-  width: 80%;
+  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -16,6 +16,7 @@ export const Input = styled.input`
     border-radius: 5px;
     border: 2px solid #CCC;
     height: 2rem;
+    padding-left: 0.5rem;
     &:hover{
         border-color: black;
         &::placeholder{
@@ -24,6 +25,5 @@ export const Input = styled.input`
     }
   &::placeholder {
     font-family: "Roboto Slab", serif;
-    padding-left: 0.5rem;
   }
 `;
