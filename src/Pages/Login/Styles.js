@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
 export const Container = styled.div`
-  background-image: linear-gradient(to bottom, #30103b, #411c54);
+  background-image: linear-gradient(to bottom, #200738, #411c54);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -28,6 +28,7 @@ export const AreaLogin = styled.form`
 export const Logo = styled.img`
   width: 6rem;
   height: 3rem;
+  margin-top: 1rem;
 `;
 
 export const Apresentation = styled.div`
