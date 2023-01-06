@@ -17,8 +17,10 @@ export const Input = styled.input`
     border: 2px solid #CCC;
     height: 2rem;
     padding-left: 0.5rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.08);
     &:hover{
         border-color: black;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15);
         &::placeholder{
             color: black;
         }

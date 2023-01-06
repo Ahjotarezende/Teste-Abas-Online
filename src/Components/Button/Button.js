@@ -1,7 +1,8 @@
 import React from "react";
+import { ButtonLogin } from "./Styles";
 
 const Button = ({ text }) => {
-  return <button type="submit">{text}</button>;
+  return <ButtonLogin type="submit">{text}</ButtonLogin>;
 };
 
 export default Button;
