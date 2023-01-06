@@ -11,7 +11,8 @@ export const Container = styled.div`
 
 export const AreaLogin = styled.form`
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     background-color: #FFF;
     border-radius: 10px;
     width: 24rem;
