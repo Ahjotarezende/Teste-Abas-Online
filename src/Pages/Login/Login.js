@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   AreaLogin,
@@ -16,24 +16,32 @@ import Button from "../../Components/Button/Button";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  /*eslint-disable */
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   
-  const [email, setEmail] = useState("");
+  const {
+    handleSubmit,
+  } = useForm();
+
+  const pwdRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!$*&@#_-])[0-9a-zA-Z!$*&@#_-]{8,}$/);
+  const emailRegex = RegExp(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+(\.[a-z0-9-]+)?$/);
+  
+  /* eslint-disable */
   const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("");
   const [type, setType] = useState("password");
-  const [textButton, setTextButton] = useState("Entrar !")
+  const [textButton, setTextButton] = useState("Entrar !");
+  const [approvedLogin, setApprovedLogin] = useState(false)
   
-  const onSubmit = data => {
-    setTextButton("Carregando...")
+  const onSubmit = (data) => {
+    setTextButton("Carregando...");
     setTimeout(() => {
-      alert(
-        `Logado com sucesso usando o email: ${data.getEmail}`
-      );
-      console.log(data)
+      alert(`Logado com sucesso usando o email: ${data.getEmail}`);
       document.location.reload();
     }, 3000);
-  }
+  };
+
+  useEffect(()=>{
+    setApprovedLogin(emailRegex.test(email) && pwdRegex.test(pwd))
+  }, [pwd, email])
 
   const viewPassword = () => {
     type === "password" ? setType("text") : setType("password");
@@ -53,7 +61,6 @@ const Login = () => {
           id="getEmail"
           type="email"
           setValor={setEmail}
-          register={register}
         />
         <DivPwd>
           <InputComp
@@ -62,7 +69,6 @@ const Login = () => {
             id="getSenha"
             type={type}
             setValor={setPwd}
-            register={register}
           />
           {type === "password" ? (
             <FaEyeUI
@@ -78,7 +84,11 @@ const Login = () => {
             />
           )}
         </DivPwd>
-        <Button text={textButton}/>
+        <Button
+          approvedLogin={approvedLogin}
+          onClick={() => console.log("oi")}
+          text={textButton}
+        />
       </AreaLogin>
     </Container>
   );
