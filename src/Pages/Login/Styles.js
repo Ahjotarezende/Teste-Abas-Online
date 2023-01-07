@@ -9,6 +9,10 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 600px) {
+    background-image: none;
+    background-color: white;
+  }
 `;
 
 export const AreaLogin = styled.form`
@@ -19,7 +23,6 @@ export const AreaLogin = styled.form`
   border-radius: 10px;
   width: 24rem;
   height: 28rem;
-  gap: 2rem;
   div:nth-child(2) {
     width: 80%;
   }
@@ -37,6 +40,7 @@ export const Apresentation = styled.div`
   flex-direction: column;
   align-items: center;
   color: #45454c;
+  margin-bottom: 2rem;
 `;
 
 export const Welcome = styled.p`
@@ -47,22 +51,33 @@ export const Welcome = styled.p`
 export const EnterData = styled.p`
   color: #ccc;
   margin-top: 0.4rem;
+  @media (max-width: 600px) {
+    color: #522d63;
+    font-size: 0.9rem;
+  }
+`;
+
+export const DivEmail = styled.div`
+  height: 5rem;
 `;
 
 export const DivPwd = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 13fr 1fr;
+  grid-template-rows: 1fr 1fr;
   align-items: center;
+  grid-column-gap: 1rem;
   width: 80%;
-  gap: 1rem;
+  margin-top: 2rem;
+  height: 5.57rem;
 `;
 
 export const FaEyeUI = styled(FaEye)`
-    margin-top: 1rem;
-    cursor: pointer;
+  margin-top: 1rem;
+  cursor: pointer;
 `;
 
 export const FaEyeSlashUI = styled(FaEyeSlash)`
-    margin-top: 1rem;
-    cursor: pointer;
-`
+  margin-top: 1rem;
+  cursor: pointer;
+`;

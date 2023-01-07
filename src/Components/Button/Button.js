@@ -3,11 +3,7 @@ import { ButtonLogin } from "./Styles";
 
 const Button = ({ text, onClick, approvedLogin }) => {
   return (
-    <ButtonLogin
-      type="submit"
-      onClick={onClick}
-      disabled={!approvedLogin}
-    >
+    <ButtonLogin type="submit" onClick={onClick} disabled={!approvedLogin}>
       {text}
     </ButtonLogin>
   );
