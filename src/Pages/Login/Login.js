@@ -14,6 +14,7 @@ import LogoAbas from "../../Assets/marca-abas-positiva.svg";
 import InputComp from "../../Components/InputComp/InputComp";
 import Button from "../../Components/Button/Button";
 import { useForm } from "react-hook-form";
+import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage";
 
 const Login = () => {
   
@@ -22,7 +23,7 @@ const Login = () => {
   } = useForm();
 
   const pwdRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!$*&@#_-])[0-9a-zA-Z!$*&@#_-]{8,}$/);
-  const emailRegex = RegExp(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)+(\.[a-z0-9-]+)?$/);
+  const emailRegex = RegExp(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{2,})+(\.[a-z0-9-]+)?$/);
   
   /* eslint-disable */
   const [pwd, setPwd] = useState("");
@@ -57,11 +58,12 @@ const Login = () => {
         </Apresentation>
         <InputComp
           textLabel="E-mail"
-          placeholder="Insira aqui seu e-mail"
+          placeholder="email@teste.com"
           id="getEmail"
           type="email"
           setValor={setEmail}
         />
+        {!emailRegex.test(email) && email && <ErrorMessage text="Formato de email invalido"/>}
         <DivPwd>
           <InputComp
             textLabel="Senha"
@@ -84,6 +86,7 @@ const Login = () => {
             />
           )}
         </DivPwd>
+        {!pwdRegex.test(pwd) && pwd && <ErrorMessage text="Formato da senha inválida, utilize caracter especial, maiúsculo e minúsculo. Mínimo de 8 caracteres"/>}
         <Button
           approvedLogin={approvedLogin}
           onClick={() => console.log("oi")}
