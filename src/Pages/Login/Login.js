@@ -33,8 +33,10 @@ const Login = () => {
   const [type, setType] = useState("password");
   const [textButton, setTextButton] = useState("Entrar !");
   const [approvedLogin, setApprovedLogin] = useState(false);
+  const [loginFinished, setLoginFinished] = useState(true);
 
   const onSubmit = () => {
+    setLoginFinished(false)
     setTextButton("Carregando...");
     let users = new Array();
     if (localStorage.hasOwnProperty("users"))
@@ -101,7 +103,7 @@ const Login = () => {
           )}
         </DivPwd>
         <Button
-          approvedLogin={approvedLogin}
+          approvedLogin={approvedLogin && loginFinished}
           text={textButton}
         />
       </AreaLogin>
