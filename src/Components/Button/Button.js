@@ -1,9 +1,9 @@
 import React from "react";
 import { ButtonLogin } from "./Styles";
 
-const Button = ({ text, onClick, approvedLogin }) => {
+const Button = ({ text, approvedLogin }) => {
   return (
-    <ButtonLogin type="submit" onClick={onClick} disabled={!approvedLogin}>
+    <ButtonLogin type="submit" disabled={!approvedLogin}>
       {text}
     </ButtonLogin>
   );
