@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { Error } from "./Styles";
 
-const ErrorMessage = ({text}) => {
-  return (
-    <p>{text}</p>
-  )
-}
+const ErrorMessage = ({ text }) => {
+  return <Error>{text}</Error>;
+};
 
-export default ErrorMessage
+export default ErrorMessage;

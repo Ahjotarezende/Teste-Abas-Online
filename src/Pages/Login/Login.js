@@ -9,6 +9,7 @@ import {
   DivPwd,
   FaEyeUI,
   FaEyeSlashUI,
+  DivEmail,
 } from "./Styles";
 import LogoAbas from "../../Assets/marca-abas-positiva.svg";
 import InputComp from "../../Components/InputComp/InputComp";
@@ -17,32 +18,33 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "../../Components/ErrorMessage/ErrorMessage";
 
 const Login = () => {
-  
-  const {
-    handleSubmit,
-  } = useForm();
+  const { handleSubmit } = useForm();
 
-  const pwdRegex = RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[!$*&@#_-])[0-9a-zA-Z!$*&@#_-]{8,}$/);
-  const emailRegex = RegExp(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{2,})+(\.[a-z0-9-]+)?$/);
-  
+  const pwdRegex = RegExp(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!$*&@#_-])[0-9a-zA-Z!$*&@#_-]{8,}$/
+  );
+  const emailRegex = RegExp(
+    /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]{2,})+(\.[a-z0-9-]+)?$/
+  );
+
   /* eslint-disable */
   const [pwd, setPwd] = useState("");
   const [email, setEmail] = useState("");
   const [type, setType] = useState("password");
   const [textButton, setTextButton] = useState("Entrar !");
-  const [approvedLogin, setApprovedLogin] = useState(false)
-  
-  const onSubmit = (data) => {
+  const [approvedLogin, setApprovedLogin] = useState(false);
+
+  const onSubmit = () => {
     setTextButton("Carregando...");
     setTimeout(() => {
-      alert(`Logado com sucesso usando o email: ${data.getEmail}`);
+      alert(`Logado com sucesso usando o email: ${email}`);
       document.location.reload();
     }, 3000);
   };
 
-  useEffect(()=>{
-    setApprovedLogin(emailRegex.test(email) && pwdRegex.test(pwd))
-  }, [pwd, email])
+  useEffect(() => {
+    setApprovedLogin(emailRegex.test(email) && pwdRegex.test(pwd));
+  }, [pwd, email]);
 
   const viewPassword = () => {
     type === "password" ? setType("text") : setType("password");
@@ -56,14 +58,18 @@ const Login = () => {
           <Welcome>Bem-vindo à Abas Online</Welcome>
           <EnterData>Insira seus dados para efetuar o login</EnterData>
         </Apresentation>
-        <InputComp
-          textLabel="E-mail"
-          placeholder="email@teste.com"
-          id="getEmail"
-          type="email"
-          setValor={setEmail}
-        />
-        {!emailRegex.test(email) && email && <ErrorMessage text="Formato de email invalido"/>}
+        <DivEmail>
+          <InputComp
+            textLabel="E-mail"
+            placeholder="email@teste.com"
+            id="getEmail"
+            type="email"
+            setValor={setEmail}
+          />
+          {!emailRegex.test(email) && email && (
+            <ErrorMessage text="Formato de e-mail inválido" />
+          )}
+        </DivEmail>
         <DivPwd>
           <InputComp
             textLabel="Senha"
@@ -85,8 +91,10 @@ const Login = () => {
               }}
             />
           )}
+          {!pwdRegex.test(pwd) && pwd && (
+            <ErrorMessage text="Utilize caracter especial, maiúsculo e minúsculo. Mínimo de 8 caracteres" />
+          )}
         </DivPwd>
-        {!pwdRegex.test(pwd) && pwd && <ErrorMessage text="Formato da senha inválida, utilize caracter especial, maiúsculo e minúsculo. Mínimo de 8 caracteres"/>}
         <Button
           approvedLogin={approvedLogin}
           onClick={() => console.log("oi")}
