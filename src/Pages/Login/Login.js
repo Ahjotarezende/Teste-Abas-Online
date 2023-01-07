@@ -36,6 +36,11 @@ const Login = () => {
 
   const onSubmit = () => {
     setTextButton("Carregando...");
+    let users = new Array();
+    if (localStorage.hasOwnProperty("users"))
+      users = JSON.parse(localStorage.getItem("users"));
+    users.push({ email, pwd });
+    localStorage.setItem("users", JSON.stringify(users));
     setTimeout(() => {
       alert(`Logado com sucesso usando o email: ${email}`);
       document.location.reload();
@@ -97,7 +102,6 @@ const Login = () => {
         </DivPwd>
         <Button
           approvedLogin={approvedLogin}
-          onClick={() => console.log("oi")}
           text={textButton}
         />
       </AreaLogin>
